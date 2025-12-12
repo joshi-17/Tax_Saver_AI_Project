@@ -456,6 +456,17 @@ Example: "My salary is 12 lakhs" or "I earn 15 lakh annually" """
         self.conversation_history = []
         self.user_context = {}
 
+    def get_categories(self) -> List[str]:
+        """Get all unique categories from knowledge base"""
+        categories = set()
+        for doc in self.knowledge_base:
+            categories.add(doc['category'])
+        return sorted(list(categories))
+
+    def search_by_category(self, category: str) -> List[Dict]:
+        """Get all documents in a specific category"""
+        return [doc for doc in self.knowledge_base if doc['category'] == category]
+
 
 # ======================================================
 # DEMO / TESTING
