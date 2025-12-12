@@ -1,0 +1,29 @@
+# Core Dependencies
+pandas>=1.5.0
+numpy>=1.23.0
+scikit-learn>=1.2.0
+
+# Web Framework
+streamlit>=1.51.0
+flask>=2.2.0
+
+# Data Visualization
+plotly>=5.11.0
+matplotlib>=3.6.0
+
+# Data Generation & Utilities
+faker>=15.0.0
+pyyaml>=6.0
+
+# Model Persistence
+joblib>=1.2.0
+
+# AI/ML for New Features
+google-generativeai>=0.3.0  # Gemini API for RAG Tax Advisor
+shap>=0.42.0                # SHAP explanations for ITR Risk
+tensorflow>=2.13.0          # LSTM for tax prediction
+keras>=2.13.0               # Deep learning framework
+
+# Optional (for data preprocessing)
+# openpyxl  # For Excel file support if needed
+# xlrd      # For older Excel formats
