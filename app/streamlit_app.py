@@ -631,11 +631,9 @@ elif page == "🚨 ITR Risk Check":
                 # Overall Interpretation
                 if result.get('overall_interpretation'):
                     st.markdown('<div class="section-header"><div class="section-icon">📋</div><h3>Overall Risk Assessment</h3></div>', unsafe_allow_html=True)
-                    st.markdown(f'''<div style="background: var(--surface); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
-                        <div style="color: #f8fafc; line-height: 1.8; white-space: pre-line;">
-{result['overall_interpretation']}
-                        </div>
-                    </div>''', unsafe_allow_html=True)
+                    st.markdown('<div style="background: var(--surface); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">', unsafe_allow_html=True)
+                    st.markdown(result['overall_interpretation'])
+                    st.markdown('</div>', unsafe_allow_html=True)
 
             # Risk Flags
             st.markdown('<div class="section-header"><div class="section-icon">⚠️</div><h3>Risk Flags</h3></div>', unsafe_allow_html=True)
