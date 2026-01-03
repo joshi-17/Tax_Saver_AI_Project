@@ -483,6 +483,38 @@ elif page == "📈 Investment Optimizer":
             st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
             st.markdown('<div class="section-header"><div class="section-icon">📊</div><h3>Month-by-Month Investment Plan</h3></div>', unsafe_allow_html=True)
 
+            # Explanation of components
+            st.markdown("""
+                <div style="background: rgba(99, 102, 241, 0.1); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="color: #c7d2fe; font-weight: 600; margin-bottom: 1rem;">📖 Understanding Your Investment Plan</div>
+                    <div style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.8;">
+                        <div style="margin-bottom: 0.8rem;">
+                            <strong style="color: #a5b4fc;">💰 ELSS SIP (80C):</strong>
+                            Equity Linked Savings Scheme - Invest monthly in tax-saving mutual funds.
+                            <span style="color: #94a3b8;">Spreads your investment throughout the year for rupee cost averaging.</span>
+                        </div>
+                        <div style="margin-bottom: 0.8rem;">
+                            <strong style="color: #a5b4fc;">🏦 NPS (80CCD):</strong>
+                            National Pension System - Retirement savings with additional tax benefits.
+                            <span style="color: #94a3b8;">Contributed quarterly for long-term wealth building.</span>
+                        </div>
+                        <div style="margin-bottom: 0.8rem;">
+                            <strong style="color: #a5b4fc;">🏥 Health Insurance (80D):</strong>
+                            Medical insurance premium - Paid annually in April.
+                            <span style="color: #94a3b8;">Protects you from medical emergencies while building wealth.</span>
+                        </div>
+                        <div style="margin-bottom: 0.8rem;">
+                            <strong style="color: #a5b4fc;">📊 Monthly Total:</strong>
+                            Total amount to invest in that specific month.
+                        </div>
+                        <div>
+                            <strong style="color: #a5b4fc;">💵 Cumulative Tax Saved:</strong>
+                            Total tax savings accumulated up to that month (at 31.2% tax rate).
+                        </div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
+
             # Create detailed table
             table_data = []
             for month_plan in plan_result["plan"]:
@@ -527,6 +559,20 @@ elif page == "📈 Investment Optimizer":
             # Display as clean Streamlit dataframe
             df = pd.DataFrame(table_data)
             st.dataframe(df, use_container_width=True, hide_index=True)
+
+            # Action Items
+            st.markdown("""
+                <div style="background: rgba(16, 185, 129, 0.1); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
+                    <div style="color: #6ee7b7; font-weight: 600; margin-bottom: 1rem;">✅ What to Do Next</div>
+                    <div style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.8;">
+                        <div style="margin-bottom: 0.5rem;">1️⃣ <strong>Set up monthly SIP</strong> for ELSS mutual funds - Auto-debit from your bank account</div>
+                        <div style="margin-bottom: 0.5rem;">2️⃣ <strong>Open NPS account</strong> if you don't have one - Visit eNPS website or your bank</div>
+                        <div style="margin-bottom: 0.5rem;">3️⃣ <strong>Pay health insurance premium</strong> in April - Get policy documents for tax filing</div>
+                        <div style="margin-bottom: 0.5rem;">4️⃣ <strong>Set reminders</strong> for NPS contributions (April, July, October, January)</div>
+                        <div>5️⃣ <strong>Keep investment proofs</strong> - Required for ITR filing by July 31</div>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
 
             # Important Note
             st.markdown("""
