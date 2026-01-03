@@ -458,23 +458,28 @@ elif page == "📈 Investment Optimizer":
             start_month = st.selectbox("Start Planning From", ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"], key="start_m")
 
         if st.button("📅 Generate Investment Plan", use_container_width=True, key="plan_btn"):
-            gaps = {"80C": max(0, 150000 - current_80c), "NPS": max(0, 50000 - current_nps), "80D": max(0, 25000 - current_80d)}
-            total_gap = sum(gaps.values())
-            tax_savings = total_gap * 0.312
+            # Create investment plan using the optimizer function
+            current_investments = {
+                '80c': current_80c,
+                'nps': current_nps,
+                'health_insurance': current_80d
+            }
 
-            months_list = ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"]
-            start_idx = months_list.index(start_month)
-            remaining_months = 12 - start_idx
+            plan_result = create_monthly_investment_plan(
+                annual_salary=1000000,  # Dummy value, not used in calculation
+                current_investments=current_investments
+            )
 
             st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
             g1, g2, g3, g4 = st.columns(4)
-            with g1: st.markdown(f'<div class="metric-card"><div class="metric-value">{format_inr(total_gap)}</div><div class="metric-label">To Invest</div></div>', unsafe_allow_html=True)
-            with g2: st.markdown(f'<div class="metric-card"><div class="metric-value">{format_inr(total_gap/remaining_months if remaining_months > 0 else total_gap)}</div><div class="metric-label">Monthly</div></div>', unsafe_allow_html=True)
-            with g3: st.markdown(f'<div class="metric-card"><div class="metric-value" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text;">{format_inr(tax_savings)}</div><div class="metric-label">Tax Saved</div></div>', unsafe_allow_html=True)
-            with g4: st.markdown(f'<div class="metric-card"><div class="metric-value">{remaining_months}</div><div class="metric-label">Months Left</div></div>', unsafe_allow_html=True)
+            with g1: st.markdown(f'<div class="metric-card"><div class="metric-value">{format_inr(plan_result["total_investment_needed"])}</div><div class="metric-label">To Invest</div></div>', unsafe_allow_html=True)
+            with g2: st.markdown(f'<div class="metric-card"><div class="metric-value">{format_inr(plan_result["monthly_target"])}</div><div class="metric-label">Monthly</div></div>', unsafe_allow_html=True)
+            with g3: st.markdown(f'<div class="metric-card"><div class="metric-value" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); -webkit-background-clip: text;">{format_inr(plan_result["total_tax_savings"])}</div><div class="metric-label">Tax Saved</div></div>', unsafe_allow_html=True)
+            with g4: st.markdown(f'<div class="metric-card"><div class="metric-value">12</div><div class="metric-label">Months Left</div></div>', unsafe_allow_html=True)
 
             # Gaps chart
+            gaps = plan_result["gaps_identified"]
             fig = go.Figure()
             fig.add_trace(go.Bar(name='Current', x=list(gaps.keys()), y=[current_80c, current_nps, current_80d], marker_color='#10b981'))
             fig.add_trace(go.Bar(name='Gap', x=list(gaps.keys()), y=list(gaps.values()), marker_color='#ef4444'))
@@ -482,6 +487,120 @@ elif page == "📈 Investment Optimizer":
                               legend=dict(orientation='h', yanchor='bottom', y=1.02), height=300, margin=dict(l=20, r=20, t=40, b=20),
                               yaxis=dict(gridcolor='rgba(51, 65, 85, 0.5)', title='Amount (₹)'))
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+
+            # MONTHLY INVESTMENT PLAN TABLE
+            st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header"><div class="section-icon">📊</div><h3>Month-by-Month Investment Plan</h3></div>', unsafe_allow_html=True)
+
+            # Create detailed table
+            table_data = []
+            for month_plan in plan_result["plan"]:
+                month_name = month_plan["month"]
+
+                # Extract investment details
+                elss_amount = 0
+                nps_amount = 0
+                insurance_amount = 0
+
+                for inv in month_plan["investments"]:
+                    if inv["type"] == "ELSS SIP":
+                        elss_amount = inv["amount"]
+                    elif inv["type"] == "NPS Contribution":
+                        nps_amount = inv["amount"]
+                    elif inv["type"] == "Health Insurance Premium":
+                        insurance_amount = inv["amount"]
+
+                table_data.append({
+                    "Month": month_name,
+                    "ELSS SIP (80C)": f"₹{elss_amount:,.0f}" if elss_amount > 0 else "-",
+                    "NPS (80CCD)": f"₹{nps_amount:,.0f}" if nps_amount > 0 else "-",
+                    "Health Ins (80D)": f"₹{insurance_amount:,.0f}" if insurance_amount > 0 else "-",
+                    "Monthly Total": f"₹{month_plan['total']:,.0f}",
+                    "Tax Saved (Cumulative)": f"₹{month_plan['cumulative_tax_saved']:,.0f}"
+                })
+
+            # Display as DataFrame with custom styling
+            import pandas as pd
+            df = pd.DataFrame(table_data)
+
+            # Custom HTML table with styling
+            st.markdown("""
+                <style>
+                .investment-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 1rem;
+                    font-size: 0.95rem;
+                }
+                .investment-table th {
+                    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                    color: white;
+                    padding: 12px;
+                    text-align: left;
+                    font-weight: 600;
+                    border: 1px solid rgba(99, 102, 241, 0.3);
+                }
+                .investment-table td {
+                    padding: 10px 12px;
+                    border: 1px solid rgba(51, 65, 85, 0.5);
+                    color: #e2e8f0;
+                }
+                .investment-table tr:nth-child(even) {
+                    background: rgba(51, 65, 85, 0.3);
+                }
+                .investment-table tr:hover {
+                    background: rgba(99, 102, 241, 0.2);
+                }
+                .investment-table tr:last-child {
+                    background: rgba(16, 185, 129, 0.2);
+                    font-weight: 700;
+                    border-top: 2px solid #10b981;
+                }
+                </style>
+            """, unsafe_allow_html=True)
+
+            # Add total row
+            total_elss = sum(inv["amount"] for month in plan_result["plan"] for inv in month["investments"] if inv["type"] == "ELSS SIP")
+            total_nps = sum(inv["amount"] for month in plan_result["plan"] for inv in month["investments"] if inv["type"] == "NPS Contribution")
+            total_insurance = sum(inv["amount"] for month in plan_result["plan"] for inv in month["investments"] if inv["type"] == "Health Insurance Premium")
+
+            table_data.append({
+                "Month": "TOTAL",
+                "ELSS SIP (80C)": f"₹{total_elss:,.0f}",
+                "NPS (80CCD)": f"₹{total_nps:,.0f}",
+                "Health Ins (80D)": f"₹{total_insurance:,.0f}",
+                "Monthly Total": f"₹{plan_result['total_investment_needed']:,.0f}",
+                "Tax Saved (Cumulative)": f"₹{plan_result['total_tax_savings']:,.0f}"
+            })
+
+            # Generate HTML table
+            html_table = df.to_html(index=False, classes='investment-table', escape=False, border=0)
+
+            # Add total row to HTML
+            total_row = f"""
+                <tr>
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong>₹{total_elss:,.0f}</strong></td>
+                    <td><strong>₹{total_nps:,.0f}</strong></td>
+                    <td><strong>₹{total_insurance:,.0f}</strong></td>
+                    <td><strong>₹{plan_result['total_investment_needed']:,.0f}</strong></td>
+                    <td><strong>₹{plan_result['total_tax_savings']:,.0f}</strong></td>
+                </tr>
+            """
+            html_table = html_table.replace('</tbody>', total_row + '</tbody>')
+
+            st.markdown(html_table, unsafe_allow_html=True)
+
+            # Important Note
+            st.markdown("""
+                <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 1rem; margin-top: 1.5rem; border-radius: 8px;">
+                    <div style="color: #fca5a5; font-weight: 600; margin-bottom: 0.5rem;">⚠️ Important Note - New Tax Regime (FY 2025-26)</div>
+                    <div style="color: #cbd5e1; font-size: 0.9rem;">
+                        Under the New Tax Regime (mandatory from FY 2025-26), investments in 80C, 80D, and NPS do <strong>NOT provide tax deductions</strong>.
+                        This plan is for <strong>wealth creation only</strong>, not tax savings under the new regime.
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
 
     # TAB 4: WHAT-IF SIMULATOR
     with tab4:
