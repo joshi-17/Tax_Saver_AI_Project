@@ -1,0 +1,164 @@
+{
+  "elss_funds": {
+    "top_performers": [
+      {"name": "Quant ELSS Tax Saver Fund", "3yr_return": 28.5, "5yr_return": 32.1, "expense_ratio": 0.57, "aum_cr": 8542, "rating": 5},
+      {"name": "Parag Parikh ELSS Tax Saver", "3yr_return": 21.3, "5yr_return": 22.8, "expense_ratio": 0.65, "aum_cr": 4231, "rating": 5},
+      {"name": "Mirae Asset ELSS Tax Saver", "3yr_return": 18.7, "5yr_return": 20.4, "expense_ratio": 0.58, "aum_cr": 18234, "rating": 5},
+      {"name": "Canara Robeco ELSS Tax Saver", "3yr_return": 17.9, "5yr_return": 19.8, "expense_ratio": 0.54, "aum_cr": 7654, "rating": 4},
+      {"name": "DSP ELSS Tax Saver Fund", "3yr_return": 16.5, "5yr_return": 18.2, "expense_ratio": 0.72, "aum_cr": 12345, "rating": 4},
+      {"name": "Axis ELSS Tax Saver Fund", "3yr_return": 14.2, "5yr_return": 17.5, "expense_ratio": 0.62, "aum_cr": 35678, "rating": 4},
+      {"name": "SBI Long Term Equity Fund", "3yr_return": 15.8, "5yr_return": 16.9, "expense_ratio": 0.98, "aum_cr": 21456, "rating": 4},
+      {"name": "HDFC ELSS Tax Saver", "3yr_return": 19.2, "5yr_return": 18.1, "expense_ratio": 1.02, "aum_cr": 14567, "rating": 4},
+      {"name": "ICICI Pru Long Term Equity", "3yr_return": 17.1, "5yr_return": 17.8, "expense_ratio": 1.12, "aum_cr": 12890, "rating": 4},
+      {"name": "Kotak ELSS Tax Saver", "3yr_return": 16.8, "5yr_return": 17.2, "expense_ratio": 0.68, "aum_cr": 4567, "rating": 4}
+    ],
+    "category_avg": {
+      "3yr_return": 17.2,
+      "5yr_return": 18.5,
+      "10yr_return": 14.8
+    }
+  },
+  "nps_returns": {
+    "equity": {"1yr": 18.5, "3yr": 14.2, "5yr": 12.8, "since_inception": 11.2},
+    "corporate_bonds": {"1yr": 8.2, "3yr": 7.8, "5yr": 8.5, "since_inception": 9.1},
+    "government_securities": {"1yr": 7.1, "3yr": 7.5, "5yr": 8.2, "since_inception": 8.9},
+    "tier1_aggressive": {"equity": 75, "corporate": 15, "govt": 10},
+    "tier1_moderate": {"equity": 50, "corporate": 30, "govt": 20},
+    "tier1_conservative": {"equity": 25, "corporate": 45, "govt": 30}
+  },
+  "ppf_rates": {
+    "current": 7.1,
+    "history": [
+      {"period": "Q4 FY24", "rate": 7.1},
+      {"period": "Q3 FY24", "rate": 7.1},
+      {"period": "Q2 FY24", "rate": 7.1},
+      {"period": "Q1 FY24", "rate": 7.1},
+      {"period": "FY23", "rate": 7.1},
+      {"period": "FY22", "rate": 7.1},
+      {"period": "FY21", "rate": 7.1},
+      {"period": "FY20", "rate": 7.9}
+    ]
+  },
+  "tax_saver_fd_rates": {
+    "sbi": 6.5,
+    "hdfc": 7.0,
+    "icici": 7.0,
+    "axis": 7.0,
+    "kotak": 6.75,
+    "post_office": 7.5
+  },
+  "home_loan_rates": {
+    "sbi": {"min": 8.5, "max": 9.65},
+    "hdfc": {"min": 8.75, "max": 9.8},
+    "icici": {"min": 8.75, "max": 9.85},
+    "axis": {"min": 8.75, "max": 10.0},
+    "kotak": {"min": 8.7, "max": 9.75},
+    "lic_hfl": {"min": 8.5, "max": 10.0}
+  },
+  "property_indices": {
+    "metros": {
+      "mumbai": {"yoy_growth": 5.2, "5yr_cagr": 3.8},
+      "delhi_ncr": {"yoy_growth": 4.8, "5yr_cagr": 4.2},
+      "bangalore": {"yoy_growth": 8.5, "5yr_cagr": 6.1},
+      "hyderabad": {"yoy_growth": 12.3, "5yr_cagr": 8.7},
+      "pune": {"yoy_growth": 6.2, "5yr_cagr": 5.1},
+      "chennai": {"yoy_growth": 4.5, "5yr_cagr": 3.9}
+    },
+    "national_avg": {"yoy_growth": 6.8, "5yr_cagr": 5.2}
+  },
+  "rental_yields": {
+    "mumbai": 2.8,
+    "delhi_ncr": 2.5,
+    "bangalore": 3.5,
+    "hyderabad": 3.8,
+    "pune": 3.2,
+    "chennai": 3.0,
+    "national_avg": 3.1
+  },
+  "market_timing_indicators": {
+    "nifty_pe": {
+      "current": 22.5,
+      "5yr_avg": 24.2,
+      "10yr_avg": 23.8,
+      "undervalued_threshold": 18,
+      "overvalued_threshold": 28
+    },
+    "sip_vs_lumpsum_analysis": {
+      "bull_market": {"sip_advantage": -5, "recommendation": "Lump Sum"},
+      "bear_market": {"sip_advantage": 15, "recommendation": "SIP"},
+      "sideways_market": {"sip_advantage": 3, "recommendation": "SIP"},
+      "current_market": "Moderately Valued"
+    },
+    "monthly_seasonality": {
+      "jan": {"avg_return": 1.2, "positive_years_pct": 58},
+      "feb": {"avg_return": 0.5, "positive_years_pct": 52},
+      "mar": {"avg_return": 1.8, "positive_years_pct": 62},
+      "apr": {"avg_return": 1.5, "positive_years_pct": 60},
+      "may": {"avg_return": 0.3, "positive_years_pct": 48},
+      "jun": {"avg_return": 0.8, "positive_years_pct": 55},
+      "jul": {"avg_return": 1.2, "positive_years_pct": 58},
+      "aug": {"avg_return": -0.2, "positive_years_pct": 45},
+      "sep": {"avg_return": 0.6, "positive_years_pct": 52},
+      "oct": {"avg_return": 1.4, "positive_years_pct": 58},
+      "nov": {"avg_return": 2.1, "positive_years_pct": 65},
+      "dec": {"avg_return": 1.6, "positive_years_pct": 62}
+    }
+  },
+  "tax_calendar": {
+    "advance_tax_dates": [
+      {"installment": 1, "due_date": "June 15", "cumulative_pct": 15},
+      {"installment": 2, "due_date": "September 15", "cumulative_pct": 45},
+      {"installment": 3, "due_date": "December 15", "cumulative_pct": 75},
+      {"installment": 4, "due_date": "March 15", "cumulative_pct": 100}
+    ],
+    "investment_deadlines": {
+      "80c_investments": "March 31",
+      "nps_contribution": "March 31",
+      "health_insurance": "March 31",
+      "hra_rent_receipts": "March 31"
+    },
+    "itr_filing": {
+      "individuals": "July 31",
+      "audit_cases": "October 31",
+      "belated_return": "December 31"
+    }
+  },
+  "section_limits_fy2024": {
+    "80C": {"limit": 150000, "includes": ["ELSS", "PPF", "EPF", "NSC", "SCSS", "Tax Saver FD", "Life Insurance", "Tuition Fees", "Home Loan Principal"]},
+    "80CCD_1B": {"limit": 50000, "includes": ["NPS additional"]},
+    "80D": {
+      "self_below_60": 25000,
+      "self_above_60": 50000,
+      "parents_below_60": 25000,
+      "parents_above_60": 50000,
+      "preventive_health_checkup": 5000
+    },
+    "24b": {"limit": 200000, "includes": ["Home loan interest for self-occupied"]},
+    "80TTA": {"limit": 10000, "includes": ["Savings account interest"]},
+    "80TTB": {"limit": 50000, "includes": ["Interest for senior citizens"]},
+    "80G": {"limit": "50% or 100% of donation", "includes": ["Charitable donations"]},
+    "80E": {"limit": "No limit", "includes": ["Education loan interest"]},
+    "80EE": {"limit": 50000, "includes": ["First-time home buyer additional interest"]},
+    "80GG": {"limit": 60000, "includes": ["Rent paid when no HRA"]}
+  },
+  "investment_recommendations_by_profile": {
+    "young_aggressive": {
+      "age_range": "22-35",
+      "80c_allocation": {"elss": 70, "ppf": 20, "nps_80c": 10},
+      "nps_allocation": "aggressive",
+      "home_loan_advice": "Consider renting initially, invest difference"
+    },
+    "mid_career_moderate": {
+      "age_range": "35-50",
+      "80c_allocation": {"elss": 50, "ppf": 30, "nps_80c": 20},
+      "nps_allocation": "moderate",
+      "home_loan_advice": "Good time to buy if stable income"
+    },
+    "pre_retirement_conservative": {
+      "age_range": "50-60",
+      "80c_allocation": {"elss": 20, "ppf": 50, "nps_80c": 30},
+      "nps_allocation": "conservative",
+      "home_loan_advice": "Avoid new loans, focus on repayment"
+    }
+  }
+}

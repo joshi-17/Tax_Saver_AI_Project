@@ -47,8 +47,10 @@ Thumbs.db
 # Model files (optional - comment out if you want to include them)
 # models/*.pkl
 
-# Datasets directory (excluded from GitHub)
-datasets/
+# Datasets directory - Keep investment_data.json for deployment
+datasets/*.csv
+datasets/*.xlsx
+!datasets/investment_data.json
 !datasets/.gitkeep
 
 # Temporary files
